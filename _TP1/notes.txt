@@ -1,0 +1,34 @@
+ligar o wamps
+
+php artisan make:model Cidade -m -c -r
+php artisan make:model Estado -m -c -r
+php artisan tinker
+
+App\Estado::all()
+
+php artisan migrate
+
+(cria modelo (tabelas automaticamente))
+
+simbolos html{
+  <br/> quebra de linha
+  &nbsp; espaço
+  <p> paragrafos
+
+  &lt;<   &gt;>
+  &le;<=  &ge;>=
+
+  dinheiro
+  &pound; &yen;   &euro;
+
+  &copy;   &reg;  &trade;
+
+  &permil;  &sum;
+  &infin;   &times;
+  &plusmn;  &oplus;
+  &radic;   &ne;
+}
+
+css{
+
+}

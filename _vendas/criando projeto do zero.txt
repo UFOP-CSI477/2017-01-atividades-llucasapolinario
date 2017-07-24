@@ -1,0 +1,42 @@
+1- Modelo
+    E-Commerce - tables
+    - Produtos      (id, nome, preço).
+    - Entradas      (produto_id, qtd)
+    - User          (id, nome, e-mail, password, type{1- adm; 2- operador; 3- cliente})
+    - Compras       (id, user_id...)
+    - Compra_Produto(id, compra_id, Prdoduto_id, qtd).
+
+2- Framework - Laravel
+
+3- Persistência - MySQL
+    DB  -> vendas
+    user-> sisvendas / 123456
+
+4-  Arquitetura - Laravel
+    Project -> laravel new nome_projeto
+
+5- Config
+    add o BD no arquivo .env
+    rodar php artisan serve (-port xxxx {Opcional})
+
+6- Routes (rotas/web.php)
+
+7- Actions
+    Telas html
+    Migrations - criar DB.
+
+    1- migration  -> php artisan help:Migration
+                  -> php artisan make:migration --create=produtos create_produtos_table
+                  AppServiceProvider add Facades.
+                  -> php artisan migrate
+    2- model      -> php artisan make:model Fornecedor
+    3- controller -> php artisan make:controller FornecedorController
+       CRUD -
+    4- view       -> criar a view no pasta view
+    5- routes     -> add a rota
+
+tinker
+use App\Fornecedor
+$f = new Fornecedor
+$f->id = "id"
+$f->save()
