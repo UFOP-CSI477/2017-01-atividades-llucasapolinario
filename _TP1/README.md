@@ -1,3 +1,11 @@
+#1- rodas migration com o seed: php artisan migrate --seed
+o administrador
+      email: admin@admin.com
+      senhas admin
+o operador
+      email: op@op.com
+      senha: op;
+
 # Easy AdminLTE integration with Laravel 5
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/jeroennoten/Laravel-AdminLTE.svg?style=flat-square)](https://packagist.org/packages/jeroennoten/Laravel-AdminLTE)
@@ -364,4 +372,3 @@ You can report issues and ask questions in the [issues section](https://github.c
 If you have a question, check the closed issues first. Over time, I've been able to answer quite a few.
 
 To submit a Pull Request, please fork this repository, create a new branch and commit your new/updated code in there. Then open a Pull Request from your new branch. Refer to [this guide](https://help.github.com/articles/about-pull-requests/) for more info.
-

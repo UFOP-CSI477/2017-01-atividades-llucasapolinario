@@ -29,31 +29,11 @@
       @endforeach
 
     </tbody>
-
-    <tfoot>
-      <tr>
-          <td></td>
-      </tr>
-      <tr>
-        <td>Quantidade Exame</td>
-        <td></td>
-        <td>{{$qtd}}</td>
-      </tr>
-      <tr>
-        <td>Total:</td>
-        <td></td>
-        <td>R$:{{$value}} </td>
-      </tr>
-    </tfoot>
-
-  <!-- <tfoot>
-    <tr>
-      <td colspan="2"> Total de alunos </td>
-      <td>3</td>
-    </tr>
-  </tfoot> -->
-
   </table>
+  
+  <h3>Quantidade Exame - {{$qtd}}</h3>
+  <h3>Total:R$:{{$value}} </h3>
+
 </div>
 
 @endsection
