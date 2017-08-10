@@ -12,37 +12,33 @@
                 </div>
                 <div class="pull-left info">
                     <p>{{ Auth::user()->name }}</p>
-                    <!-- Status -->
-                    <a href="#"><i class="fa fa-circle text-success"></i> {{ trans('adminlte_lang::message.online') }}</a>
                 </div>
             </div>
         @endif
-
-        <!-- search form (Optional) -->
-        <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="{{ trans('adminlte_lang::message.search') }}..."/>
-              <span class="input-group-btn">
-                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
-              </span>
-            </div>
-        </form>
-        <!-- /.search form -->
-
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
             <li class="header">{{ trans('adminlte_lang::message.header') }}</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
-            <li><a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.anotherlink') }}</span></a></li>
-            <li class="treeview">
-                <a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.multilevel') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+            <!-- <li class=""><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
+            <li><a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.anotherlink') }}</span></a></li> -->
+            <!-- <li class="active">
+                <a href="/procedimentos"><i class='fa fa-link'></i> <span>Procedimentos</span><i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li>
-                    <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li>
+                    <li><a href="#">Listar</a></li>
+                    <li><a href="#">Cadastrar</a></li>
                 </ul>
-            </li>
-        </ul><!-- /.sidebar-menu -->
+            </li> -->
+            <!-- <a href="/home">{{ Auth::user()->name }} -->
+            @if (Auth::user()->type == 1)
+              <li><a href="/procedures"><i class='fa fa-link'></i> <span>Procedimentos</span></a>
+              <li><a href="/pacientes"><i class='fa fa-link'></i> <span>Pacientes</span></i></a></li>
+              <li><a href="/relatorio"><i class='fa fa-link'></i> <span>Relatório</span></a></li>
+            @elseif (Auth::user()->type == 2)
+              <li><a href="/procedures"><i class='fa fa-link'></i> <span>Procedimentos</span></a>
+            @endif
+            <li><a href="/tests"><i class='fa fa-link'></i> <span>Exames</span></a></li>
+            </p>
+
+        </ul>
     </section>
-    <!-- /.sidebar -->
 </aside>

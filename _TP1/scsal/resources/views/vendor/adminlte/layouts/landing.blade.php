@@ -12,16 +12,6 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
     <meta property="og:title" content="Adminlte-laravel" />
     <meta property="og:type" content="website" />
     <meta property="og:description" content="Adminlte-laravel - {{ trans('message.landingdescription') }}" />
-    <!-- <meta property="og:url" content="http://demo.adminlte.acacha.org/" />
-    <meta property="og:image" content="http://demo.adminlte.acacha.org/img/AcachaAdminLTE.png" />
-    <meta property="og:image" content="http://demo.adminlte.acacha.org/img/AcachaAdminLTE600x600.png" />
-    <meta property="og:image" content="http://demo.adminlte.acacha.org/img/AcachaAdminLTE600x314.png" />
-    <meta property="og:sitename" content="demo.adminlte.acacha.org" />
-    <meta property="og:url" content="http://demo.adminlte.acacha.org" /> -->
-<!--
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@acachawiki" />
-    <meta name="twitter:creator" content="@acacha1" /> -->
 
     <title>{{env('APP_NAME')}}</title>
 
@@ -49,15 +39,29 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#home" class="smoothScroll">{{ trans('message.home') }}</a></li>
-                    <li><a href="#desc" class="smoothScroll">{{ trans('message.address') }}</a></li>
+                    <li ><a href="#home" class="smoothScroll">Área Geral</a></li>
+                    <li><a href="#desc" class="smoothScroll">Sobre</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">{{ trans('message.login') }}</a></li>
+                        <!-- <li><a href="{{ url('/login') }}">{{ trans('message.login') }}</a></li> -->
+
+                        <li ><a href="{{ url('/login') }}">Paciente</a></li>
+                        <li ><a href="{{ url('/login') }}">Operador</a></li>
+                        <li ><a href="{{ url('/login') }}">Administrador</a></li>
                         <li><a href="{{ url('/register') }}">{{ trans('message.register') }}</a></li>
                     @else
-                        <li><a href="/home">{{ Auth::user()->name }}</a></li>
+                        <li>
+                          <a href="/procedures">{{ Auth::user()->name }}
+                            @if (Auth::user()->type == 1)
+                              - Administrador
+                            @elseif (Auth::user()->type == 2)
+                              - Operador
+                            @else
+                              - Paciente
+                            @endif
+                          </a>
+                        </li>
                     @endif
                 </ul>
             </div><!--/.nav-collapse -->
@@ -74,19 +78,6 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
                         <h3>Laboratório de confiança, qualidade e que te informa os resultados de seu exame a um click de distância.</h3>
                         <!-- <h3><a href="{{ url('/register') }}" class="btn btn-lg btn-success">{{ trans('message.gedstarted') }}</a></h3> -->
                     </div>
-                    <!-- <div class="col-lg-2">
-                        <h5>Ultimos procesimentos</h5>
-                        <img class="hidden-xs hidden-sm hidden-md" src="{{ asset('/img/arrow1.png') }}">
-                    </div>
-                    <div class="col-lg-8">
-                        <img class="img-responsive" src="{{ asset('/img/app-bg.png') }}" alt="">
-                    </div>
-                    <div class="col-lg-2">
-                        <br>
-                        <img class="hidden-xs hidden-sm hidden-md" src="{{ asset('/img/arrow2.png') }}">
-                        <h5>{{ trans('message.paramaisefetueologin') }}</h5>
-                        <p>... {{ trans('message.by') }} <a href="http://acacha.org/sergitur">Sergi Tur Badenas</a> {{ trans('message.at') }} <a href="http://acacha.org">acacha.org</a> {{ trans('message.readytouse') }}</p>
-                    </div> -->
                 </div>
             </div> <!--/ .container -->
         </div><!--/ #headerwrap -->
@@ -97,26 +88,31 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
         <div id="intro">
             <div class="container">
                 <div class="row centered">
-                    <!-- <h1>{{ trans('message.designed') }}</h1> -->
-                    <h1>Últimos procedimentos</h1>
-                    <br>
-                    <br>
-                    <!-- <div class="col-lg-4">
-                        <img src="{{ asset('/img/intro01.png') }}" alt="">
-                        <h3>{{ trans('message.community') }}</h3>
-                        <p>{{ trans('message.see') }} <a href="https://github.com/acacha/adminlte-laravel">{{ trans('message.githubproject') }}</a>, {{ trans('message.post') }} <a href="https://github.com/acacha/adminlte-laravel/issues">{{ trans('message.issues') }}</a> {{ trans('message.and') }} <a href="https://github.com/acacha/adminlte-laravel/pulls">{{ trans('message.pullrequests') }}</a></p>
-                    </div> -->
-                    <div class="col-lg-4">
-                        <img src="{{ asset('/img/intro02.png') }}" alt="">
-                        <h3>{{ trans('message.schedule') }}</h3>
-                        <p>Para obter os resultados efetue o Login.</p>
-                        <!-- <h5>{{ trans('message.paramaisefetueologin') }}</h5> -->
+
+                    <div class="container-fluid spark-screen">
+                      <h2>Últimos procedimentos</h2>
+                      <!-- <p>The .table-hover class enables a hover state on table rows:</p> -->
+                      <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th>Nome</th>
+                            <th>Preço</th>
+                            <!-- <th>Id do Usuário</th> -->
+                          </tr>
+                        </thead>
+                        <tbody>
+
+                          @foreach($procedures = App\Procedure::orderBy('name') as $p)
+                          <tr>
+                            <td>{{ $p->name }}</td>
+                            <td>R$:{{ $p->price }}</td>
+                            <!-- <td>{{ $p->user_id }}</td> -->
+                          </tr>
+                          @endforeach
+                        </tbody>
+                      </table>
                     </div>
-                    <!-- <div class="col-lg-4">
-                        <img src="{{ asset('/img/intro03.png') }}" alt="">
-                        <h3>{{ trans('message.monitoring') }}</h3>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                    </div> -->
+
                 </div>
                 <br>
                 <hr>
@@ -130,9 +126,9 @@ Landing page based on Pratt: http://blacktie.co/demo/pratt/
         <div id="c">
             <div class="container">
                 <p>
-                    <b>LaraLabora </b> Desenvolvido pelo aluno: Lucas Apolinário Figueiredo
+                    <b>{{env('APP_NAME')}} </b> Desenvolvido pelo aluno: Lucas Apolinário Figueiredo
                     <a href="mailto:apolinario_lucas_@hotmail.com">apolinario_lucas_@hotmail.com</a>.<br/>
-                    <strong>LaraLabora &copy; 2017. CSI477-Sistemas-Web, ICEA-UFOP, João Monlevade - MG <br></strong>
+                    <strong>{{env('APP_NAME')}} &copy; 2017. CSI477-Sistemas-Web, ICEA-UFOP, João Monlevade - MG <br></strong>
                     <a href="https://github.com/llucasapolinario">Github TP1 - CSI477-Sistemas-Web </a>
                     <br/>
                 </p>

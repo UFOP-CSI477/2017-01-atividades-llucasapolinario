@@ -10,7 +10,7 @@
     <div id="app" v-cloak>
         <div class="register-box">
             <div class="register-logo">
-                <a href="{{ url('/home') }}"><b>{{env('APP_NAME')}}</a>
+                <a href="{{ url('/procedures') }}"><b>{{env('APP_NAME')}}</a>
             </div>
 
             @if (count($errors) > 0)

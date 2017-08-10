@@ -15,6 +15,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/relatorio', function () {
+    return view('vendor.adminlte.relatorios.index');
+});
+
+Route::resource('/home', 'TestsController');
+
+Route::resource('/procedures', 'ProceduresController');
+
+Route::resource('/pacientes', 'UsersController');
+
+Route::resource('/tests', 'TestsController');
+
 Route::group(['middleware' => 'auth'], function () {
     //    Route::get('/link1', function ()    {
 //        // Uses Auth Middleware

@@ -9,8 +9,9 @@
     <div id="app" v-cloak>
         <div class="login-box">
             <div class="login-logo">
-                <a href="{{ url('/home') }}"><b>{{env('APP_NAME')}}</a>
-            </div><!-- /.login-logo -->
+                <a href="{{ url('/procedures') }}"><b>{{env('APP_NAME')}}</a>
+            </div>
+            <!-- /.login-logo -->
 
         @if (count($errors) > 0)
             <div class="alert alert-danger">
@@ -24,10 +25,11 @@
         @endif
 
         <div class="login-box-body">
-        <p class="login-box-msg"> {{ trans('message.siginsession') }} </p>
+        <p class="login-box-msg"> Login </p>
 
         <login-form name="{{ config('auth.providers.users.field','email') }}"
-                    domain="{{ config('auth.defaults.domain','') }}"></login-form>
+                    domain="{{ config('auth.defaults.domain','') }}">
+        </login-form>
 
         @include('adminlte::auth.partials.social_login')
 
