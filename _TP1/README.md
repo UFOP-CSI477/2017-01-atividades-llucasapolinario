@@ -1,4 +1,4 @@
-#1- rodas migration com o seed: php artisan migrate --seed
+1- rodar migration com o seed: php artisan migrate --seed
 o administrador
       email: admin@admin.com
       senhas admin
