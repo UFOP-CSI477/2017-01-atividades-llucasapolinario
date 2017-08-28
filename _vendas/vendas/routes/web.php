@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/welcome', function () {
+    return view('welcome');
+});
+
 Route::get('/', function () {
     return view('principal');
 });
@@ -18,3 +22,7 @@ Route::get('/', function () {
 Route::resource('/produtos', 'ProdutosController');
 
 Route::resource('/fornecedores', 'FornecedorController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

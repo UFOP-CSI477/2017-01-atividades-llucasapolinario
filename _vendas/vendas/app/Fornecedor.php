@@ -9,9 +9,5 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Fornecedor extends Model
 {
-
-  // function __construct(argument)
-  // {
-  //   # code...
-  // }
+  protected $fillable = ['nome', 'nomeFantasia', 'telefone'];
 }

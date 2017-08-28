@@ -25,7 +25,7 @@ class FornecedorController extends Controller
    */
   public function create()
   {
-      //
+      return view ('fornecedores.create');
   }
 
   /**
@@ -36,7 +36,8 @@ class FornecedorController extends Controller
    */
   public function store(Request $request)
   {
-      //
+      Fornecedor::create($request->all());
+      return redirect('/fornecedores');
   }
 
   /**
@@ -45,9 +46,9 @@ class FornecedorController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function show($id)
+  public function show(Fornecedor $fornecedore)
   {
-      //
+      return view('fornecedores.show')->with('fornecedore', $fornecedore);
   }
 
   /**
@@ -56,9 +57,9 @@ class FornecedorController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function edit($id)
+  public function edit(Fornecedor $fornecedore)
   {
-      //
+      return view('fornecedores.edit')->with('fornecedore', $fornecedore);
   }
 
   /**
@@ -68,9 +69,13 @@ class FornecedorController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, $id)
+  public function update(Request $request, Fornecedor $fornecedore)
   {
-      //
+      $fornecedore->nome = $request->nome;
+      $fornecedore->nomeFantasia = $request->nomeFantasia;
+      $fornecedore->telefone = $request->telefone;
+      $fornecedore->save();
+      return redirect('fornecedores');
   }
 
   /**
@@ -79,8 +84,9 @@ class FornecedorController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function destroy($id)
+  public function destroy(Fornecedor $fornecedore)
   {
-      //
+      $fornecedore->delete();
+      return redirect('/fornecedores');
   }
 }
